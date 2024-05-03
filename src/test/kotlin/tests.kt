@@ -12,11 +12,15 @@ class ParserTest {
             Pair("(-100--100)", 0),
             Pair("(((225+1)+1)+1)", 228),
             Pair("(-1000*5)", -5000)
-            )
+        )
 
         for (pair in correctTestsMap.entries) {
             println("TEST ${pair.key}")
-            assertEquals(pair.key.parseExpression().result, pair.value, "in string ${pair.key} expected ${pair.value} got ${pair.key.parseExpression().result}")
+            assertEquals(
+                pair.key.parseExpression().result,
+                pair.value,
+                "in string ${pair.key} expected ${pair.value} got ${pair.key.parseExpression().result}"
+            )
         }
     }
 

@@ -10,7 +10,7 @@ abstract class Expression(str: String, start: Int = 0, end: Int = str.length) : 
         mapOf(Pair(Primitives.PLUS, Plus), Pair(Primitives.MINUS, Minus), Pair(Primitives.MULTIPLY, Multiply))
 
     init {
-        if (end-start == 0) throw NoNullExpressionException(start)
+        if (end - start == 0) throw NoNullExpressionException(start)
     }
 }
 
@@ -26,7 +26,7 @@ class Element(str: String, start: Int = 0, end: Int = str.length) : Expression(s
     }
 }
 
-class ConstantExpression(str: String,  start: Int = 0, end: Int = str.length) : Expression(str, start, end) {
+class ConstantExpression(str: String, start: Int = 0, end: Int = str.length) : Expression(str, start, end) {
     override var result: Int
 
     init {
@@ -128,7 +128,7 @@ class BinaryExpression(str: String, start: Int = 0, end: Int = str.length) : Exp
     }
 }
 
-fun String.parseExpression() : Expression {
+fun String.parseExpression(): Expression {
     var result: Expression
     for (expression in arrayOf(BinaryExpression::class, Element::class, ConstantExpression::class)) {
         try {
@@ -138,7 +138,6 @@ fun String.parseExpression() : Expression {
             if (err.targetException is NotExpressionException) continue
             throw err.targetException
         }
-
     }
     throw NotExpressionException("general")
 }
